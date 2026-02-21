@@ -1,0 +1,7 @@
+# Ignore all Django migration files
+**/migrations/*.py
+**/migrations/*.pyc
+
+# Keep __init__.py so Django recognizes migrations package
+!**/migrations/__init__.py
+*.sqlite3
