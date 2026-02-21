@@ -13,6 +13,10 @@ class PostAPIView(APIView):
     def get(self, request, id:int|None=None):
         if id is None or id == 0:
             return Response({'message': 'This is a message'}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            post = Post.objects.get(id=id)
+            serializer = self.serializer_class(post)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
 class LikesAPIView(APIView):
     serializer_class = LikesSerializer
