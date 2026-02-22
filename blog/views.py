@@ -26,4 +26,6 @@ class CommentAPIView(APIView):
     serializers_class = CommentsSerializer
     http_method_names = ['get', 'put', 'post']
 
+def blog_page(request):
+    return render(request, 'blog/index.html')
 

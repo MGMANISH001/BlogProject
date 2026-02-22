@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MY BLOG</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin:0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            min-height:100vh;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        header{
+            background: rgba(0,0,0,0.6);
+            color:white;
+            padding:30px;
+            text-align:center;
+        }
+
+        header h1{
+            margin:0;
+            font-size:36px;
+        }
+
+        header p{
+            opacity:0.8;
+        }
+
+
+        .container{
+            max-width:900px;
+            margin:10px auto;
+            padding:20px;
+            position:relative;
+            top:-40px;
+        }
+
+
+        .post{
+            background:white;
+            border-radius:12px;
+            padding:35px;
+            box-shadow:0 15px 30px rgba(0,0,0,0.25);
+            animation: fadeIn 0.7s ease;
+        }
+
+        .post h2{
+            font-size:28px;
+            margin-top:0;
+            color:#333;
+        }
+
+        .post p{
+            font-size:17px;
+            line-height:1.8;
+            color:#555;
+        }
+
+
+        .footer{
+            text-align:center;
+            color:white;
+            padding:30px;
+            opacity:0.7;
+        }
+
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Blog</h1>
+    <p>Learning • Building • Growing</p>
+</header>
+
+<div class="container">
+</div>
+
+<div id="posts"></div>
+
+<script>
+    fetch("http://127.0.0.1:8000/blog/1")
+    .then(response => response.json())
+    .then(data => {
+
+        let html = `
+            <div class="post">
+                <h2>${data.title}</h2>
+                <p>${data.content}</p>
+            </div>
+        `;
+
+        document.getElementById("posts").innerHTML = html;
+
+    })
+    .catch(error => {
+        console.log("Error:", error);
+    });
+</script>
+</body>
+</html>
